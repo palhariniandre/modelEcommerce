@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../partials/head %>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1>Recuperação de senha</h1>
+                    <hr /> <br />
+
+                    <% if (success) { %>
+                        <div class="alert alert-success">
+                            <%= success %>
+                        </div>
+                    <% } %>
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
+                        </div>
+                    <% } %>
+
+                    <% if (!success) { %>                    
+                    <p>
+                        Digite aqui sua nova senha.
+                    </p>
+
+                    <form action="/v1/api/usuarios/senha-recuperada" method="POST">
+                        <input
+                            type="hidden"
+                            name="token"
+                            value="<%= token %>"
+                            />
+
+                        <div class="form-group">
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Nova senha"
+                            />
+                        </div>
+                        <button class="btn btn-primary">
+                            criar nova senha
+                        </button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
